@@ -91,7 +91,7 @@ $(document).ready(function() {
 	  /*--- Display information modal box ---*/
     $("#guessButton").click(function() {
 		var guess = $("#userGuess").val();
-        var result = newGame.getFeedback(guess);
+        var result = newGame().getFeedback(guess);
         $("#feedback").text(result);
         $("#count").text(guessCounter+=1);
         $("#guessList").append("<li>" + guess  +"</li>");
