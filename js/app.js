@@ -104,7 +104,7 @@ $(document).ready(function() {
        guessCounter = 0;
        $("#feedback").text("Make your Guess!");
        $("#count").text(0);
-       $("#userGuess").val("");
+       
        $("#guessList").empty();
 
     });
