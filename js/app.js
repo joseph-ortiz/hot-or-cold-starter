@@ -1,18 +1,12 @@
-var newGame = function () {
+var newGame = (function () {
 	
-    var high, mediumHigh, medium, mediumLow, low;
     var _randomNumber;
     var a, b, difference;
     var isCorrectNumber, isLow, isMediumLow, isMedium, isMediumHigh, isHigh;
-    //high = 50;
-    //mediumHigh = 35;
-    //medium = 25;
-    //mediumLow = 15;
-    //low = 5;
-    _randomNumber = Math.floor((Math.random() * 100) + 1);
+    var _reset, _getFeedback, _getDifference;
     a = 10;
     b = 20;
-
+  
     difference = function (firstNumber, secondNumber) {
       return Math.abs(firstNumber - secondNumber)
     };
@@ -47,15 +41,15 @@ var newGame = function () {
 
     //TODO: validate string
 
-    var reset = function () {
-    	throw "TODO: reset guess and randomNumber"
+    _reset = function () {
+    	_randomNumber = Math.floor((Math.random() * 100) + 1);
     }
 
-    var getDifference = function (a, b){
+    _getDifference = function (a, b){
     	return difference(a,b);
     }
 
-    var getFeedback = function (_number) {
+    _getFeedback = function (_number) {
         var diff = difference(_randomNumber, _number);
         if (_number <= 0 || _number > 100) {
           return "No temperature condition met, error with number: " + _number;
@@ -74,38 +68,38 @@ var newGame = function () {
         }
       }
 
+   _reset();
+
     return {
-    	difference: getDifference,
-    	reset: reset,
-    	getFeedback: getFeedback
+    	difference: _getDifference,
+    	reset: _reset,
+    	getFeedback: _getFeedback
     };
 
-};
+})();
 
  
 
 $(document).ready(function() {
 	$('form').submit(false);
     var guessCounter = 0;
-    newGame();
 	  /*--- Display information modal box ---*/
     $("#guessButton").click(function() {
 		var guess = $("#userGuess").val();
-        var result = newGame().getFeedback(guess);
+        var result = newGame.getFeedback(guess);
         $("#feedback").text(result);
         $("#count").text(guessCounter+=1);
         $("#guessList").append("<li>" + guess  +"</li>");
-
     });
 
     /*--- Display information modal box ---*/
     $("#newGame").click(function() {
-       newGame();
+      
        guessCounter = 0;
        $("#feedback").text("Make your Guess!");
        $("#count").text(0);
-       
        $("#guessList").empty();
+       newgame.reset();
 
     });
 
