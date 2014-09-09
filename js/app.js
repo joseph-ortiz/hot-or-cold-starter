@@ -33,14 +33,7 @@ var newGame = (function () {
     isHigh = function (number) {
       return number >= 50 && number <= 100;
     };
-    //TODO: give this feedback here  div#feedback
-
-    //TODO: display count of gueses
-
-    //TODO: display guessed numbers 
-
-    //TODO: validate string
-
+    
     _reset = function () {
     	_randomNumber = Math.floor((Math.random() * 100) + 1);
     }
